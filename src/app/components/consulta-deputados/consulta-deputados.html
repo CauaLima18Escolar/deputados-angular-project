@@ -1,0 +1,36 @@
+<main class="p-4">
+    <header>
+        <h3 class="text-xl text-center font-bold mb-4">Listagem dos Deputados</h3>
+
+        <fieldset class="grid grid-cols-[1fr_auto] items-center mb-4">
+            <input #searchInput class="text-sm px-3 py-2 border border-neutral-300 border-r-0 rounded-l-md w-full
+               bg-white text-neutral-700 placeholder:text-neutral-400
+               outline-none transition-all duration-200
+               focus:border-neutral-500 focus:ring-1 focus:ring-neutral-300" placeholder="Buscar por nome ou ID..."
+                type="text">
+
+            <button (click)="buscarPorId(searchInput.value)" class="h-full px-5 py-2 text-sm font-semibold
+               border border-neutral-300 rounded-r-md
+               bg-neutral-100 text-neutral-700
+               hover:bg-neutral-800 hover:text-white hover:border-neutral-800
+               active:bg-neutral-700
+               transition-all duration-200 cursor-pointer" type="button">
+                Pesquisar
+            </button>
+        </fieldset>
+    </header>
+
+    <section class="grid grid-cols-8 gap-4">
+        @for (dep of deputados(); track dep.id) {
+        <div class="relative border border-neutral-300 rounded-md p-3">
+            <div class="h-32 flex justify-center">
+                <img [src]="dep.urlFoto" alt="Foto do deputado" class="h-32 object-cover rounded-md">
+                <span class="absolute text-sm font-semibold top-4 rounded-l-md py-2 px-4 bg-red-400 right-0">{{dep.siglaPartido}}</span>
+            </div>
+
+            <p class="mt-2 text-center text-md font-semibold">{{ dep.nome }}</p>
+            <p class="mt-1 text-center text-sm text-neutral-400">ID: {{dep.id}}</p>
+        </div>
+        }
+    </section>
+</main>
