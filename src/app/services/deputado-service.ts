@@ -8,8 +8,8 @@ export class DeputadoService {
     readonly API_URL = 'https://dadosabertos.camara.leg.br/api/v2';
     readonly #httpClient = inject(HttpClient);
 
-    public getAll(): Observable<ApiResponseDeputado> {
-        return this.#httpClient.get<ApiResponseDeputado>(`${this.API_URL}/deputados?ordem=ASC&ordenarPor=nome`);
+    public getAll(page: number = 1, size: number = 24): Observable<ApiResponseDeputado> {
+        return this.#httpClient.get<ApiResponseDeputado>(`${this.API_URL}/deputados?pagina=${page}&itens=${size}&ordem=ASC&ordenarPor=nome`);
     }
 
     public getAllByName(name: string): Observable<ApiResponseDeputado> {
