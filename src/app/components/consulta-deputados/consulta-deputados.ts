@@ -35,10 +35,9 @@ export class ConsultaDeputados {
 
   public searchByName(nome: string) {
     this.isLoading.set(true);
+    this.currentPage.set(1);
 
-    if (!nome) alert("Preencha o campo de busca corretamente!");
-
-    this.#deputadoService.getAllByName(nome).subscribe({
+    this.#deputadoService.getAllByName(nome, this.currentPage()).subscribe({
       next: (res) => {
         this.deputados.set(res.dados);
       },
@@ -62,5 +61,4 @@ export class ConsultaDeputados {
     this.currentPage.set(this.currentPage() - 1);
     this.loadData();
   }
-
 }

@@ -29,6 +29,8 @@
 
     @if (isLoading()) {
         <div class="p-4"><app-loader [size]="'lg'"/></div>
+    } @else if (deputados().length == 0) {
+        <h3 class="font-medium text-gray-400 text-center p-8">Não foi possível encontrar nenhum deputado(a)</h3>
     } @else {
         <section class="grid grid-cols-8 gap-4">
             @for (dep of deputados(); track dep.id) {
@@ -82,7 +84,7 @@
             Página <span class="font-medium text-zinc-900">{{currentPage()}}</span>
         </span>
 
-        <button type="button" [disabled]="(deputados().length < 10) || isLoading()" (click)="nextPage()"
+        <button type="button" [disabled]="(deputados().length < 24) || isLoading()" (click)="nextPage()"
             class="cursor-pointer inline-flex h-9 items-center gap-1.5 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-700 shadow-sm transition-colors hover:bg-zinc-50 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40">
             Próxima
 

@@ -12,8 +12,8 @@ export class DeputadoService {
         return this.#httpClient.get<ApiResponseDeputado>(`${this.API_URL}/deputados?pagina=${page}&itens=${size}&ordem=ASC&ordenarPor=nome`);
     }
 
-    public getAllByName(name: string): Observable<ApiResponseDeputado> {
-        return this.#httpClient.get<ApiResponseDeputado>(`${this.API_URL}/deputados?nome=${name}&ordem=ASC&ordenarPor=nome`)
+    public getAllByName(name: string, page: number = 1, size: number = 24): Observable<ApiResponseDeputado> {
+        return this.#httpClient.get<ApiResponseDeputado>(`${this.API_URL}/deputados?pagina=${page}&itens=${size}&nome=${name}&ordem=ASC&ordenarPor=nome`)
     }
 
     public getById(id: string): Observable<ApiResponseDeputado> {
